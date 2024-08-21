@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 025066243530.dkr.ecr.ap-southeast-1.amazonaws.com
+      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 025066243530.dkr.ecr.ap-southeast-1.amazonaws.com
       - echo Build started on `date`
       - REPOSITORY_URI=025066243530.dkr.ecr.ap-southeast-1.amazonaws.com/prosethevent
       - echo REPOSITORY_URI=$REPOSITORY_URI
@@ -12,7 +12,7 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t Myweb .
+      - docker build -t proseth-event .
       - docker tag proseth-event:latest $REPOSITORY_URI:latest
       - docker tag proseth-event:latest $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
   post_build:
