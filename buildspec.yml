@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 025066243530.dkr.ecr.ap-southeast-1.amazonaws.com
+      - echo Build started on `date`
+      - REPOSITORY_URI=025066243530.dkr.ecr.ap-southeast-1.amazonaws.com/prosethevent
+      - echo REPOSITORY_URI=$REPOSITORY_URI
+      - echo Docker image version: $CODEBUILD_RESOLVED_SOURCE_VERSION
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t Myweb .
+      - docker tag proseth-event:latest $REPOSITORY_URI:latest
+      - docker tag proseth-event:latest $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
+  post_build:
+    commands:
+      - echo Pushing the Docker image to ECR...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
+

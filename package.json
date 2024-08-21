@@ -1,0 +1,13 @@
+{
+  "name": "proseth-event",
+  "version": "1.0.0",
+  "description": "Simple Node.js application for Proseth Event",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {}
+}
+
