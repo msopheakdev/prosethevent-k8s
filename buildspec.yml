@@ -4,9 +4,9 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 025066243530.dkr.ecr.ap-southeast-1.amazonaws.com
+      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 025066243530.dkr.ecr.ap-southeast-1.amazonaws.com || { echo 'Docker login failed'; exit 1; }
       - echo Build started on `date`
-      - REPOSITORY_URI=025066243530.dkr.ecr.ap-southeast-1.amazonaws.com/prosethevent
+      - export REPOSITORY_URI=025066243530.dkr.ecr.ap-southeast-1.amazonaws.com/prosethevent
   build:
     commands:
       - echo Building the Docker image...
