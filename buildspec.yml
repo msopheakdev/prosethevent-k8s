@@ -23,7 +23,5 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - '**/*'
+    - $IMAGE_NAME-$VERSION.tar
   discard-paths: yes
-  base-directory: build-output
-  name: $IMAGE_NAME-$VERSION.tar
