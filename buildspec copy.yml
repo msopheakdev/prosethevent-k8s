@@ -7,23 +7,20 @@ phases:
       - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 025066243530.dkr.ecr.ap-southeast-1.amazonaws.com || { echo 'Docker login failed'; exit 1; }
       - echo Build started on `date`
       - export REPOSITORY_URI=025066243530.dkr.ecr.ap-southeast-1.amazonaws.com/prosethevent
-      - export IMAGE_NAME=prosethapp
-      - export VERSION=$(date +%Y%m%d%H%M%S) # Generates a timestamp-based version number
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t $IMAGE_NAME .
-      - docker tag $IMAGE_NAME:latest $REPOSITORY_URI:latest
-      - docker tag $IMAGE_NAME:latest $REPOSITORY_URI:$VERSION
+      - docker build -t proseth-event .
+      - docker tag proseth-event:latest $REPOSITORY_URI:latest
+      - docker tag proseth-event:latest $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
       - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$VERSION
+      - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - echo Build completed on `date`
 artifacts:
   files:
     - '**/*'
   discard-paths: yes
-  base-directory: build-output
-  name: $IMAGE_NAME-$VERSION.tar
+
