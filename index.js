@@ -11,7 +11,7 @@ const server = http.createServer((req, res) => {
   const htmlContent = `
     <html>
       <head>
-        <title>Proseth Racing Game</title>
+        <title>Proseth Racing Game V1</title>
         <style>
           body {
             margin: 0;
