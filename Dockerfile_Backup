@@ -1,5 +1,5 @@
-# Step 1: Use an official Node.js runtime as the base image
-FROM node:14
+# Step 1: Use an official Node.js 14 runtime based on Alpine Linux as the base image
+FROM node:14-alpine
 
 # Step 2: Set the working directory in the container
 WORKDIR /usr/src/app
@@ -19,7 +19,7 @@ EXPOSE 8080
 # Step 7: Define the command to run the application
 CMD ["node", "index.js"]
 
-# Step 8: Multi-stage build to reduce the image size (Optional)
+# Optional: Multi-stage build to reduce the image size
 # FROM node:14-alpine as production
 # WORKDIR /usr/src/app
 # COPY --from=0 /usr/src/app .
