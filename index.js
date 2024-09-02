@@ -27,13 +27,12 @@ const server = http.createServer((req, res) => {
           }
           #background-label {
             position: absolute;
-            top: 50%;
+            top: 10%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             color: rgba(255, 255, 255, 0.1);
             font-size: 48px;
             font-weight: bold;
-            z-index: -1;
             user-select: none;
             pointer-events: none;
           }
@@ -78,8 +77,14 @@ const server = http.createServer((req, res) => {
           }
 
           function drawObstacle(obstacle) {
-            ctx.fillStyle = obstacle.color;
+            const gradient = ctx.createLinearGradient(0, obstacle.y, 0, obstacle.y + obstacle.height);
+            gradient.addColorStop(0, 'rgba(255, 0, 0, 0.8)');
+            gradient.addColorStop(1, 'rgba(255, 0, 0, 0.5)');
+            ctx.fillStyle = gradient;
             ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
           }
 
           function updateCar() {
@@ -93,14 +98,14 @@ const server = http.createServer((req, res) => {
 
           function updateObstacles() {
             if (Math.random() < 0.02) {
-              const width = Math.random() * (canvas.width / 2);
+              const width = 40 + Math.random() * (canvas.width / 3);
               const x = Math.random() * (canvas.width - width);
-              obstacles.push({ x: x, y: 0, width: width, height: 20, color: 'red' });
+              obstacles.push({ x: x, y: 0, width: width, height: 20 + Math.random() * 20, speed: 2 + Math.random() * 3 });
             }
 
             for (let i = obstacles.length - 1; i >= 0; i--) {
               const obstacle = obstacles[i];
-              obstacle.y += 2;
+              obstacle.y += obstacle.speed;
 
               if (
                 playerCar.x < obstacle.x + obstacle.width &&
