@@ -27,11 +27,11 @@ const server = http.createServer((req, res) => {
           }
           #background-label {
             position: absolute;
-            top: 10%;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.1);
-            font-size: 48px;
+            color: rgba(255, 255, 255, 0.8); /* More visible white color */
+            font-size: 36px;
             font-weight: bold;
             user-select: none;
             pointer-events: none;
