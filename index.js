@@ -14,10 +14,10 @@ const server = http.createServer((req, res) => {
   const htmlContent = `
     <html>
       <head>
-        <title>Welcome to Proseth Event k8s on aws</title>
+        <title>Welcome to Proseth Event</title>
       </head>
       <body style="background-color: ${rgbColor}; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
-        <h1 style="color: white; font-family: Arial, sans-serif;">Welcome to Proseth Event</h1>
+        <h1 style="color: white; font-family: Arial, sans-serif;">Welcome to Proseth Event for K8S on AWS</h1>
       </body>
     </html>
   `;
