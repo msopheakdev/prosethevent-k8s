@@ -16,7 +16,7 @@ const server = http.createServer((req, res) => {
           body {
             margin: 0;
             overflow: hidden;
-            background-color: yellow;
+            background-color: brown;
             font-family: Arial, sans-serif;
           }
           canvas {
@@ -47,7 +47,7 @@ const server = http.createServer((req, res) => {
       </head>
       <body>
         <div id="score">Score: 0</div>
-        <div id="background-label">Proseth App V7</div>
+        <div id="background-label">Proseth App V8</div>
         <canvas id="gameCanvas" width="320" height="480"></canvas>
         <script>
           const canvas = document.getElementById('gameCanvas');
