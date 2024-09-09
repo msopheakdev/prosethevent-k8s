@@ -47,7 +47,7 @@ const server = http.createServer((req, res) => {
       </head>
       <body>
         <div id="score">Score: 0</div>
-        <div id="background-label">Proseth App V4</div>
+        <div id="background-label">Proseth App V5</div>
         <canvas id="gameCanvas" width="320" height="480"></canvas>
         <script>
           const canvas = document.getElementById('gameCanvas');
