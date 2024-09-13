@@ -16,7 +16,7 @@ const server = http.createServer((req, res) => {
           body {
             margin: 0;
             overflow: hidden;
-            background-color: blue;
+            background-color: orange;
             font-family: Arial, sans-serif;
           }
           canvas {
