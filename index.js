@@ -16,13 +16,13 @@ const server = http.createServer((req, res) => {
           body {
             margin: 0;
             overflow: hidden;
-            background-color: brown;
+            background-color: blue;
             font-family: Arial, sans-serif;
           }
           canvas {
             display: block;
             margin: 0 auto;
-            background-color: brown;
+            background-color: white;
             position: relative;
           }
           #background-label {
